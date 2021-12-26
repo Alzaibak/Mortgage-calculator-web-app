@@ -11,7 +11,7 @@ sliderPurchase.oninput = function() {
 }
 
 
-sliderPurchase.addEventListener('mousemove', e => {
+sliderPurchase.addEventListener('input', e => {
     var x = sliderPurchase.value;
     var y = x / 1000;
     var color = 'linear-gradient(90deg, #0a58ca30 ' + y + '%, white ' + y + '%)';
@@ -30,7 +30,7 @@ sliderPayment.oninput = function() {
 
 }
 
-sliderPayment.addEventListener('mousemove', e => {
+sliderPayment.addEventListener('input', e => {
     var x = sliderPayment.value;
     var y = x / 100;
     var color = 'linear-gradient(90deg, #0a58ca30 ' + y + '%, white ' + y + '%)';
@@ -48,7 +48,7 @@ sliderRepayment.oninput = function() {
 
 }
 
-sliderRepayment.addEventListener('mousemove', e => {
+sliderRepayment.addEventListener('input', e => {
     var x = sliderRepayment.value;
     var y = x * 4;
     var color = 'linear-gradient(90deg, #0a58ca30 ' + y + '%, white ' + y + '%)';
@@ -66,7 +66,7 @@ sliderinterestRate.oninput = function() {
 
 }
 
-sliderinterestRate.addEventListener('mousemove', e => {
+sliderinterestRate.addEventListener('input', e => {
     var x = sliderinterestRate.value;
     var y = x * 10;
     var color = 'linear-gradient(90deg, #0a58ca30 ' + (y - 5) + '%, white ' + y + '%)';
@@ -77,11 +77,11 @@ sliderinterestRate.addEventListener('mousemove', e => {
 let leanAmount = document.getElementById('loan-amount');
 
 
-sliderPurchase.addEventListener('mousemove', function() {
+sliderPurchase.addEventListener('input', function() {
     leanAmount.innerHTML = (sliderPurchase.value) - (sliderPayment.value);
 })
 
-sliderPayment.addEventListener('mousemove', function() {
+sliderPayment.addEventListener('input', function() {
     leanAmount.innerHTML = (sliderPurchase.value) - (sliderPayment.value);
 })
 
@@ -96,7 +96,7 @@ let monthRate = document.getElementById('final-value')
 
 
 document.querySelectorAll('.result').forEach(item => {
-    item.addEventListener('mousemove', event => {
+    item.addEventListener('input', event => {
         let p = leanAmount.innerHTML;
         let r = sliderinterestRate.value;
         let n = (sliderRepayment.value);
@@ -114,4 +114,17 @@ document.querySelectorAll('.result').forEach(item => {
             monthRate.innerHTML = 'Error!'
         }
     })
+})
+
+// information show with clicking the buttom
+
+let loanResult = document.getElementById('loanResult');
+let paymentMonth = document.getElementById('paymentMonth');
+let buttom = document.getElementById('buttom');
+let hide = document.getElementById('hide');
+buttom.addEventListener('click', function() {
+    hide.style.display = 'block';
+    loanResult.innerHTML = leanAmount.innerHTML;
+    paymentMonth.innerHTML = monthRate.innerHTML;
+
 })
