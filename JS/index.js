@@ -10,12 +10,14 @@ sliderPurchase.oninput = function() {
 
 }
 
+
 sliderPurchase.addEventListener('mousemove', e => {
     var x = sliderPurchase.value;
     var y = x / 1000;
     var color = 'linear-gradient(90deg, #0a58ca30 ' + y + '%, white ' + y + '%)';
     sliderPurchase.style.background = color;
 })
+
 
 // down-payment bar setup
 let sliderPayment = document.getElementById('range2');
@@ -30,7 +32,7 @@ sliderPayment.oninput = function() {
 
 sliderPayment.addEventListener('mousemove', e => {
     var x = sliderPayment.value;
-    var y = x / 1000;
+    var y = x / 100;
     var color = 'linear-gradient(90deg, #0a58ca30 ' + y + '%, white ' + y + '%)';
     sliderPayment.style.background = color;
 })
@@ -69,4 +71,16 @@ sliderinterestRate.addEventListener('mousemove', e => {
     var y = x * 10;
     var color = 'linear-gradient(90deg, #0a58ca30 ' + (y - 5) + '%, white ' + y + '%)';
     sliderinterestRate.style.background = color;
+})
+
+// loan amount calculate (Purchase Price - Down Payment)
+let leanAmount = document.getElementById('loan-amount');
+
+
+sliderPurchase.addEventListener('mousemove', function() {
+    leanAmount.innerHTML = (sliderPurchase.value) - (sliderPayment.value);
+})
+
+sliderPayment.addEventListener('mousemove', function() {
+    leanAmount.innerHTML = (sliderPurchase.value) - (sliderPayment.value);
 })
