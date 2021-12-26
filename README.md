@@ -1,6 +1,6 @@
 # Mortgage-calculator-web-app
 
-This web application can calculate loans for the clients and calculating how much should be paid every month.
+This web application calculate loans needed for each client and calculate the monthly payment on account.
 
 The users can:
 - set purchase prices
