@@ -84,3 +84,34 @@ sliderPurchase.addEventListener('mousemove', function() {
 sliderPayment.addEventListener('mousemove', function() {
     leanAmount.innerHTML = (sliderPurchase.value) - (sliderPayment.value);
 })
+
+
+// paymrnt per month calculate M = P[r(1+r)^n/((1+r)^n)-1)]
+// M = the total monthly mortgage payment
+// P = the principal loan amount(Purchase Price - Down Payment)
+// r = your monthly interest rate
+// n = number of payments over the loan’s lifetime.
+
+let monthRate = document.getElementById('final-value')
+
+
+document.querySelectorAll('.result').forEach(item => {
+    item.addEventListener('mousemove', event => {
+        let p = leanAmount.innerHTML;
+        let r = sliderinterestRate.value;
+        let n = (sliderRepayment.value);
+
+        try {
+            let result = p * (r * ((1 + r) ^ n) / (((1 + r) ^ n) - 1));
+            let results = result / 12;
+
+            if (results < 0) {
+                monthRate.innerHTML = 'Negative!'
+            } else {
+                monthRate.innerHTML = results.toFixed(2);
+            }
+        } catch {
+            monthRate.innerHTML = 'Error!'
+        }
+    })
+})
